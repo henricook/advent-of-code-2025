@@ -4,7 +4,7 @@
 import scala.io.Source
 
 @main def solve(): Unit =
-  val instructions = Source.fromFile("input.txt").getLines()
+  val instructions = Source.fromFile("../input.txt").getLines()
     .map(_.trim)
     .filter(_.nonEmpty)
     .toList

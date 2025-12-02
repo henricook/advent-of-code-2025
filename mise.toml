@@ -1,2 +1,3 @@
 [tools]
 scala-cli = "latest"
+zig = "latest"

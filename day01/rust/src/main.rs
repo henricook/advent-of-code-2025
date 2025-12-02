@@ -1,7 +1,7 @@
 use std::fs;
 
 fn main() {
-    let input = fs::read_to_string("../scala/input.txt").expect("Failed to read input file");
+    let input = fs::read_to_string("../input.txt").expect("Failed to read input file");
     let instructions: Vec<&str> = input.lines().map(|l| l.trim()).filter(|l| !l.is_empty()).collect();
 
     println!("Part 1: {}", count_zeros_landing(&instructions));
