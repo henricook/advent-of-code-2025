@@ -31,7 +31,7 @@ This repository contains my solutions to [Advent of Code 2025](https://adventofc
 
 | Day | Scala | Rust | Zig | Stars |
 |:---:|:-----:|:----:|:---:|:-----:|
-| [01](./day01) | ✅ | ✅ | ✅ | ⭐⭐ |
+| [01](./day01) | ✅ [📄](./day01/scala/Solution.scala) | ✅ [📄](./day01/rust/src/main.rs) | ✅ [📄](./day01/zig/src/main.zig) | ⭐⭐ |
 | [02](./day02) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 | [03](./day03) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 | [04](./day04) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
@@ -44,7 +44,7 @@ This repository contains my solutions to [Advent of Code 2025](https://adventofc
 | [11](./day11) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 | [12](./day12) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 
-**Legend:** ✅ Complete | ⬜ Not Started | ⭐ Zig Solution
+**Legend:** ✅ Complete | ⬜ Not Started | 📄 View source
 
 </div>
 
