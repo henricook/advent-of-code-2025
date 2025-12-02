@@ -6,7 +6,7 @@
 ![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
 ![Zig](https://img.shields.io/badge/Zig-F7A41D?style=for-the-badge&logo=zig&logoColor=white)
 
-**A showcase of problem-solving across multiple programming paradigms**
+**Problem-solving across multiple programming paradigms**
 
 [About](#about) • [Progress](#progress) • [Solutions](#solutions) • [Running](#running) • [Languages](#languages)
 
@@ -16,12 +16,12 @@
 
 ## About
 
-This repository contains my solutions to [Advent of Code 2025](https://adventofcode.com/2025), implemented in multiple programming languages to demonstrate versatility and deep understanding of different programming paradigms.
+This repository contains my solutions to [Advent of Code 2025](https://adventofcode.com/2025), implemented in multiple programming languages for fun
 
 **Language Approach:**
-- 🔴 **Scala**: Complete coverage (12/12 days)
-- 🟠 **Rust**: Full parallel implementation
-- 🟡 **Zig**: Select problems for systems programming exploration
+- 🔴 **Scala**: Where my heart lives
+- 🟠 **Rust**: Up and coming
+- 🟡 **Zig**: Experience of lower level languages is probably important
 
 ## Progress
 
@@ -31,7 +31,7 @@ This repository contains my solutions to [Advent of Code 2025](https://adventofc
 
 | Day | Scala | Rust | Zig | Stars |
 |:---:|:-----:|:----:|:---:|:-----:|
-| [01](./day01) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
+| [01](./day01) | ✅ | ✅ | ✅ | ⭐⭐ |
 | [02](./day02) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 | [03](./day03) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 | [04](./day04) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
@@ -54,21 +54,20 @@ Each day's solutions are organized in their respective directories with the foll
 
 ```
 dayXX/
+├── input.txt     # Shared input for all languages
 ├── scala/
-│   ├── Solution.scala
-│   └── input.txt
+│   └── Solution.scala
 ├── rust/
-│   ├── main.rs
 │   ├── Cargo.toml
-│   └── input.txt
-└── zig/          # Select days only
-    ├── main.zig
-    └── input.txt
+│   └── src/main.rs
+└── zig/
+    ├── build.zig
+    └── src/main.zig
 ```
 
 ### Highlights
 
-> 🚧 Solutions will be added daily starting December 1st, 2025
+> 🚧 Solutions are being added daily starting December 1st, 2025
 
 <!--
 Uncomment and populate as solutions are completed:
@@ -106,7 +105,7 @@ zig build run
 Leveraging functional programming paradigms, immutable data structures, and powerful pattern matching to write expressive, type-safe solutions.
 
 ### 🟠 Rust
-Demonstrating systems programming expertise with zero-cost abstractions, memory safety, and fearless concurrency.
+Systems programming with zero-cost abstractions, memory safety, and fearless concurrency.
 
 ### 🟡 Zig
 Exploring low-level control with a modern approach to systems programming, manual memory management, and compile-time execution.
