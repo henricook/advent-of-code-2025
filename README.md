@@ -33,7 +33,7 @@ This repository contains my solutions to [Advent of Code 2025](https://adventofc
 |:---:|:-----:|:----:|:---:|:-----:|
 | [01](./day01) | ✅ [📄](./day01/scala/Solution.scala) | ✅ [📄](./day01/rust/src/main.rs) | ✅ [📄](./day01/zig/src/main.zig) | ⭐⭐ |
 | [02](./day02) | ✅ [📄](./day02/scala/Solution.scala) | ✅ [📄](./day02/rust/src/main.rs) | ✅ [📄](./day02/zig/src/main.zig) | ⭐⭐ |
-| [03](./day03) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
+| [03](./day03) | ✅ [📄](./day03/scala/Solution.scala) | ✅ [📄](./day03/rust/src/main.rs) | ✅ [📄](./day03/zig/src/main.zig) | ⭐⭐ |
 | [04](./day04) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 | [05](./day05) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
 | [06](./day06) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
