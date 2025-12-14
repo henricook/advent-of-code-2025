@@ -29,20 +29,20 @@ This repository contains my solutions to [Advent of Code 2025](https://adventofc
 
 ### 🎯 Completion Status
 
-| Day | Scala | Rust | Zig | Stars |
-|:---:|:-----:|:----:|:---:|:-----:|
-| [01](./day01) | ✅ [📄](./day01/scala/Solution.scala) | ✅ [📄](./day01/rust/src/main.rs) | ✅ [📄](./day01/zig/src/main.zig) | ⭐⭐ |
-| [02](./day02) | ✅ [📄](./day02/scala/Solution.scala) | ✅ [📄](./day02/rust/src/main.rs) | ✅ [📄](./day02/zig/src/main.zig) | ⭐⭐ |
-| [03](./day03) | ✅ [📄](./day03/scala/Solution.scala) | ✅ [📄](./day03/rust/src/main.rs) | ✅ [📄](./day03/zig/src/main.zig) | ⭐⭐ |
-| [04](./day04) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [05](./day05) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [06](./day06) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [07](./day07) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [08](./day08) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [09](./day09) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [10](./day10) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [11](./day11) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
-| [12](./day12) | ⬜ | ⬜ | ⬜ | ⭐⭐ |
+| Day | Scala | Rust | Zig | Stars | Notes |
+|:---:|:-----:|:----:|:---:|:-----:|:------|
+| [01](./day01) | ✅ [📄](./day01/scala/Solution.scala) | ✅ [📄](./day01/rust/src/main.rs) | ✅ [📄](./day01/zig/src/main.zig) | ⭐⭐ | Modular arithmetic |
+| [02](./day02) | ✅ [📄](./day02/scala/Solution.scala) | ✅ [📄](./day02/rust/src/main.rs) | ✅ [📄](./day02/zig/src/main.zig) | ⭐⭐ | Arithmetic series for pattern sums |
+| [03](./day03) | ✅ [📄](./day03/scala/Solution.scala) | ✅ [📄](./day03/rust/src/main.rs) | ✅ [📄](./day03/zig/src/main.zig) | ⭐⭐ | Greedy digit selection |
+| [04](./day04) | ✅ [📄](./day04/scala/Solution.scala) | ✅ [📄](./day04/rust/src/main.rs) | ✅ [📄](./day04/zig/src/main.zig) | ⭐⭐ | BFS with neighbor propagation |
+| [05](./day05) | ✅ [📄](./day05/scala/Solution.scala) | ✅ [📄](./day05/rust/src/main.rs) | ✅ [📄](./day05/zig/src/main.zig) | ⭐⭐ | Interval merging, binary search |
+| [06](./day06) | ✅ [📄](./day06/scala/Solution.scala) | ✅ [📄](./day06/rust/src/main.rs) | ✅ [📄](./day06/zig/src/main.zig) | ⭐⭐ | BigInt, ASCII art parsing |
+| [07](./day07) | ✅ [📄](./day07/scala/Solution.scala) | ✅ [📄](./day07/rust/src/main.rs) | ✅ [📄](./day07/zig/src/main.zig) | ⭐⭐ | Beam simulation, timeline counting |
+| [08](./day08) | ✅ [📄](./day08/scala/Solution.scala) | ✅ [📄](./day08/rust/src/main.rs) | ✅ [📄](./day08/zig/src/main.zig) | ⭐⭐ | Union-Find with path compression |
+| [09](./day09) | ✅ [📄](./day09/scala/Solution.scala) | ✅ [📄](./day09/rust/src/main.rs) | ✅ [📄](./day09/zig/src/main.zig) | ⭐⭐ | Ray casting for point-in-polygon |
+| [10](./day10) | ✅ [📄](./day10/scala/Solution.scala) | ✅ [📄](./day10/rust/src/main.rs) | ✅ [📄](./day10/zig/src/main.zig) | ⭐⭐ | Gaussian elimination over GF(2) |
+| [11](./day11) | ✅ [📄](./day11/scala/Solution.scala) | ✅ [📄](./day11/rust/src/main.rs) | ✅ [📄](./day11/zig/src/main.zig) | ⭐⭐ | Memoized DFS on DAG |
+| [12](./day12) | ✅ [📄](./day12/scala/Solution.scala) | ✅ [📄](./day12/rust/src/main.rs) | ✅ [📄](./day12/zig/src/main.zig) | ⭐⭐ | Bounding box constraint analysis |
 
 **Legend:** ✅ Complete | ⬜ Not Started | 📄 View source
 
@@ -67,14 +67,13 @@ dayXX/
 
 ### Highlights
 
-> 🚧 Solutions are being added daily starting December 1st, 2025
+> 🎉 All 12 days complete in all three languages - 24 stars earned!
 
-<!--
-Uncomment and populate as solutions are completed:
-
-- **Day X - [Title]**: Interesting algorithm or optimization note
-- **Day Y - [Title]**: Cross-language performance comparison
--->
+**Notable implementations:**
+- **Day 6**: BigInt arithmetic for ASCII art math problems
+- **Day 8**: Union-Find with path compression for 3D clustering
+- **Day 10**: GF(2) Gaussian elimination for lights-out puzzles
+- **Day 11**: Memoized DFS for counting paths through DAGs
 
 ## Running
 

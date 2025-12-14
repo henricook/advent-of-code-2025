@@ -91,13 +91,13 @@ def sumRepeatedPatternsInRange(range: IdRange, maxDigitCount: Int): Long =
 def isPrimitivePattern(pattern: Long, digitCount: Int): Boolean =
   if digitCount == 1 then true
   else
-    val patternStr = pattern.toString.reverse.padTo(digitCount, '0').reverse
+    val patternString = pattern.toString.reverse.padTo(digitCount, '0').reverse
 
     // Check all divisors of digitCount - pattern is primitive if no shorter repetition exists
     val divisors = (1 until digitCount).filter(digitCount % _ == 0)
     !divisors.exists { subLength =>
-      val subPattern = patternStr.take(subLength)
-      subPattern * (digitCount / subLength) == patternStr
+      val subPattern = patternString.take(subLength)
+      subPattern * (digitCount / subLength) == patternString
     }
 
 def powerOf10(exponent: Int): Long = Math.pow(10, exponent).toLong

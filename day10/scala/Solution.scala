@@ -88,12 +88,12 @@ def solveGF2(numLights: Int, target: Set[Int], buttons: Array[Set[Int]]): Int =
 
         // Back-substitute to find pivot variables
         for row <- (pivotRow - 1) to 0 by -1 do
-          val pivotCol = pivotCols(row)
-          if pivotCol >= 0 then
+          val pivotColumnIndex = pivotCols(row)
+          if pivotColumnIndex >= 0 then
             var value = matrix(row)(numButtons)
-            for col <- pivotCol + 1 until numButtons do
+            for col <- pivotColumnIndex + 1 until numButtons do
               value ^= matrix(row)(col) * solution(col)
-            solution(pivotCol) = value
+            solution(pivotColumnIndex) = value
 
         val presses = solution.sum
         math.min(currentMin, presses)
@@ -179,12 +179,12 @@ def solveLinearSystem(numCounters: Int, targets: Array[Int], buttons: Array[Set[
       // Compute pivot variable values
       val testSolution = solution.clone()
       for row <- (pivotRow - 1) to 0 by -1 do
-        val pivotCol = pivotCols(row)
-        if pivotCol >= 0 then
+        val pivotColumnIndex = pivotCols(row)
+        if pivotColumnIndex >= 0 then
           var value = augmented(row)(numButtons)
-          for col <- pivotCol + 1 until numButtons do
+          for col <- pivotColumnIndex + 1 until numButtons do
             value -= augmented(row)(col) * testSolution(col)
-          testSolution(pivotCol) = value
+          testSolution(pivotColumnIndex) = value
 
       // Check if valid (all non-negative integers)
       val allValid = testSolution.forall { v =>
@@ -206,12 +206,12 @@ def solveLinearSystem(numCounters: Int, targets: Array[Int], buttons: Array[Set[
 
   if freeVars.isEmpty then
     for row <- (pivotRow - 1) to 0 by -1 do
-      val pivotCol = pivotCols(row)
-      if pivotCol >= 0 then
+      val pivotColumnIndex = pivotCols(row)
+      if pivotColumnIndex >= 0 then
         var value = augmented(row)(numButtons)
-        for col <- pivotCol + 1 until numButtons do
+        for col <- pivotColumnIndex + 1 until numButtons do
           value -= augmented(row)(col) * solution(col)
-        solution(pivotCol) = value
+        solution(pivotColumnIndex) = value
 
     val allValid = solution.forall { v =>
       val rounded = math.round(v).toInt

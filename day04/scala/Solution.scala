@@ -10,17 +10,17 @@ import scala.collection.mutable
   println(s"Part 1: ${countAccessibleRolls(grid)}")
   println(s"Part 2: ${countTotalRemovable(grid)}")
 
-val directions = List(
+val eightDirectionOffsets = List(
   (-1, -1), (-1, 0), (-1, 1),
   (0, -1),           (0, 1),
   (1, -1),  (1, 0),  (1, 1)
 )
 
 def countNeighbors(row: Int, col: Int, height: Int, width: Int, isRoll: (Int, Int) => Boolean): Int =
-  directions.count { case (dr, dc) =>
-    val nr = row + dr
-    val nc = col + dc
-    nr >= 0 && nr < height && nc >= 0 && nc < width && isRoll(nr, nc)
+  eightDirectionOffsets.count { case (rowOffset, colOffset) =>
+    val neighborRow = row + rowOffset
+    val neighborCol = col + colOffset
+    neighborRow >= 0 && neighborRow < height && neighborCol >= 0 && neighborCol < width && isRoll(neighborRow, neighborCol)
   }
 
 def isAccessible(row: Int, col: Int, height: Int, width: Int, isRoll: (Int, Int) => Boolean): Boolean =
@@ -37,8 +37,6 @@ def countAccessibleRolls(grid: Array[String]): Int =
     if grid(row)(col) == '@' && isAccessible(row, col, height, width, isRoll)
   yield 1).sum
 
-// BFS-based approach: O(n) single pass instead of O(m*n) repeated scans
-// When a roll is removed, only its neighbors might become newly accessible
 def countTotalRemovable(initialGrid: Array[String]): Int =
   val height = initialGrid.length
   val width = initialGrid(0).length
@@ -70,11 +68,11 @@ def countTotalRemovable(initialGrid: Array[String]): Int =
       totalRemoved += 1
 
       // Check if any neighbors became newly accessible
-      for (dr, dc) <- directions do
-        val (nr, nc) = (row + dr, col + dc)
-        if inBounds(nr, nc) && grid(nr)(nc) == '@' && !inQueue.contains((nr, nc)) then
-          if isAccessible(nr, nc, height, width, isRoll) then
-            queue.enqueue((nr, nc))
-            inQueue += ((nr, nc))
+      for (rowOffset, colOffset) <- eightDirectionOffsets do
+        val (neighborRow, neighborCol) = (row + rowOffset, col + colOffset)
+        if inBounds(neighborRow, neighborCol) && grid(neighborRow)(neighborCol) == '@' && !inQueue.contains((neighborRow, neighborCol)) then
+          if isAccessible(neighborRow, neighborCol, height, width, isRoll) then
+            queue.enqueue((neighborRow, neighborCol))
+            inQueue += ((neighborRow, neighborCol))
 
   totalRemoved
