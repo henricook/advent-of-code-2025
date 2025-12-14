@@ -13,27 +13,27 @@ import scala.io.Source
   println(s"Part 2: ${countZerosAllClicks(instructions)}")
 
 def countZerosLanding(instructions: List[String]): Int =
-  val (_, zeros) = instructions.foldLeft((50, 0)) { case ((pos, count), instr) =>
-    val (dir, dist) = (instr.head, instr.tail.toInt)
-    val newPos = dir match
-      case 'R' => Math.floorMod(pos + dist, 100)
-      case 'L' => Math.floorMod(pos - dist, 100)
-    (newPos, if newPos == 0 then count + 1 else count)
+  val (_, zeroLandings) = instructions.foldLeft((50, 0)) { case ((dialPosition, count), instruction) =>
+    val (direction, moveDistance) = (instruction.head, instruction.tail.toInt)
+    val newPosition = direction match
+      case 'R' => Math.floorMod(dialPosition + moveDistance, 100)
+      case 'L' => Math.floorMod(dialPosition - moveDistance, 100)
+    (newPosition, if newPosition == 0 then count + 1 else count)
   }
-  zeros
+  zeroLandings
 
 def countZerosAllClicks(instructions: List[String]): Int =
-  val (_, zeros) = instructions.foldLeft((50, 0)) { case ((pos, count), instr) =>
-    val (dir, dist) = (instr.head, instr.tail.toInt)
-    val crossings = dir match
-      case 'R' => (pos + dist) / 100
+  val (_, totalZeroCrossings) = instructions.foldLeft((50, 0)) { case ((dialPosition, count), instruction) =>
+    val (direction, moveDistance) = (instruction.head, instruction.tail.toInt)
+    val zeroCrossings = direction match
+      case 'R' => (dialPosition + moveDistance) / 100
       case 'L' =>
-        if pos == 0 then dist / 100
-        else if pos <= dist then (dist - pos) / 100 + 1
+        if dialPosition == 0 then moveDistance / 100
+        else if dialPosition <= moveDistance then (moveDistance - dialPosition) / 100 + 1
         else 0
-    val newPos = dir match
-      case 'R' => Math.floorMod(pos + dist, 100)
-      case 'L' => Math.floorMod(pos - dist, 100)
-    (newPos, count + crossings)
+    val newPosition = direction match
+      case 'R' => Math.floorMod(dialPosition + moveDistance, 100)
+      case 'L' => Math.floorMod(dialPosition - moveDistance, 100)
+    (newPosition, count + zeroCrossings)
   }
-  zeros
+  totalZeroCrossings

@@ -18,6 +18,7 @@ def parseRanges(input: String): List[IdRange] =
     IdRange(parts(0).toLong, parts(1).toLong)
   }.toList
 
+// Part 1: Mirrored numbers (e.g., 123123 where second half mirrors first)
 def sumInvalidIds(ranges: List[IdRange]): Long =
   ranges.map(sumMirroredNumbersInRange).sum
 
@@ -44,25 +45,21 @@ def sumMirroredNumbersInRange(range: IdRange): Long =
       0L
   }.sum
 
-def powerOf10(exponent: Int): Long = Math.pow(10, exponent).toLong
-
-def ceilDiv(numerator: Long, denominator: Long): Long =
-  (numerator + denominator - 1) / denominator
-
-// Part 2: Numbers made of a pattern repeated at least twice (e.g., 123123, 121212, 1111111)
-
+// Part 2: Numbers made of a pattern repeated at least twice (e.g., 123123, 1111, 121212)
+// Uses arithmetic approach matching Part 1's elegance, handling overlaps via primitive patterns
 def sumRepeatedPatternIds(ranges: List[IdRange]): Long =
   val maxValue = ranges.map(_.end).max
-  val allRepeatedNumbers = generateAllRepeatedPatternNumbers(maxValue).toArray.sorted
+  val maxDigitCount = maxValue.toString.length
 
+  // For each range, sum all repeated-pattern numbers using arithmetic series
   ranges.map { range =>
-    allRepeatedNumbers.filter(n => n >= range.start && n <= range.end).sum
+    sumRepeatedPatternsInRange(range, maxDigitCount)
   }.sum
 
-def generateAllRepeatedPatternNumbers(maxValue: Long): Set[Long] =
-  val maxDigitCount = maxValue.toString.length
-  val result = scala.collection.mutable.Set[Long]()
+def sumRepeatedPatternsInRange(range: IdRange, maxDigitCount: Int): Long =
+  var total = 0L
 
+  // For each valid (patternDigitCount, repetitionCount) combination
   for
     totalDigitCount <- 2 to maxDigitCount
     patternDigitCount <- 1 until totalDigitCount
@@ -71,15 +68,42 @@ def generateAllRepeatedPatternNumbers(maxValue: Long): Set[Long] =
     if repetitionCount >= 2
   do
     val repeatMultiplier = computeRepeatMultiplier(patternDigitCount, repetitionCount)
+
+    // Range of valid base patterns (with correct digit count)
     val smallestPattern = if patternDigitCount == 1 then 1L else powerOf10(patternDigitCount - 1)
     val largestPattern = powerOf10(patternDigitCount) - 1
 
-    for basePattern <- smallestPattern to largestPattern do
-      val repeatedNumber = basePattern * repeatMultiplier
-      if repeatedNumber <= maxValue then
-        result += repeatedNumber
+    // Find patterns that produce repeated numbers within our target range
+    val smallestInRange = Math.max(smallestPattern, ceilDiv(range.start, repeatMultiplier))
+    val largestInRange = Math.min(largestPattern, range.end / repeatMultiplier)
 
-  result.toSet
+    if smallestInRange <= largestInRange then
+      // Only count patterns that are "primitive" (not themselves repetitions)
+      // to avoid double-counting numbers like 111111 (which is 1×6, 11×3, and 111×2)
+      for pattern <- smallestInRange to largestInRange do
+        if isPrimitivePattern(pattern, patternDigitCount) then
+          total += pattern * repeatMultiplier
+
+  total
+
+// Check if a pattern is primitive (not itself a repetition of a shorter pattern)
+// e.g., 12 is primitive, but 11 is not (it's 1 repeated), 1212 is not (it's 12 repeated)
+def isPrimitivePattern(pattern: Long, digitCount: Int): Boolean =
+  if digitCount == 1 then true
+  else
+    val patternStr = pattern.toString.reverse.padTo(digitCount, '0').reverse
+
+    // Check all divisors of digitCount - pattern is primitive if no shorter repetition exists
+    val divisors = (1 until digitCount).filter(digitCount % _ == 0)
+    !divisors.exists { subLength =>
+      val subPattern = patternStr.take(subLength)
+      subPattern * (digitCount / subLength) == patternStr
+    }
+
+def powerOf10(exponent: Int): Long = Math.pow(10, exponent).toLong
+
+def ceilDiv(numerator: Long, denominator: Long): Long =
+  (numerator + denominator - 1) / denominator
 
 def computeRepeatMultiplier(patternDigitCount: Int, repetitionCount: Int): Long =
   // For pattern of P digits repeated R times: multiplier = (10^(P*R) - 1) / (10^P - 1)
